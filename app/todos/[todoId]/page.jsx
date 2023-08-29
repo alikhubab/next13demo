@@ -1,4 +1,6 @@
 import React from "react";
+import { notFound } from "next/navigation";
+export const dynamicParams = true;
 
 const fetchTodo = async (todoId) => {
   const res = await fetch(
@@ -17,6 +19,8 @@ const fetchTodo = async (todoId) => {
 async function TodoPage({ params: { todoId } }) {
   const todo = await fetchTodo(todoId);
 
+  if (!todo.id) return notFound();
+
   return (
     <div>
       Todo {todoId}
@@ -24,6 +28,7 @@ async function TodoPage({ params: { todoId } }) {
       <h5>Completed: {todo.completed ? "true" : "false"}</h5>
     </div>
   );
+}
 
 export async function generateStaticParams() {
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos/`);
