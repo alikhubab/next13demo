@@ -2,12 +2,7 @@ import React from "react";
 import TodosList from "./TodosList";
 
 function page() {
-  return (
-    <div>
-      Todos
-      <TodosList />
-    </div>
-  );
+  return <div>This is where todos will be listed.</div>;
 }
 
 export default page;
